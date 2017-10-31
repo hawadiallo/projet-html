@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    
+    .col-xs-12.header-content
+        h1 Manage Docker
+
+    .col-xs-12.row-content
+        h2 Create container
+    
+    .col-xs-12.row-content
+        form(method='POST' action='/')
+            input(type='text' name='name' placeholder='Container Name')
+            button(type='submit') Create
+                
+    .col-xs-12.row-content
+        unless containers
+            p No one containers
+        else    
+            table.table
+                thead
+                    tr
+                        th Id
+                        th Name
+                        th Status
+                        th Details
+                        th Delete
+                tbody
+                    each c in containers
+                        tr
+                            td #{c.Id}
+                            td #{c.Names}
+                            td #{c.Status}
+                            td
+                                a(href='/c.Id') Details
+                            td
+                                form(method='POST' action='/?_method=DELETE')
+                                    input(type='hidden' )
+                                    button(type='submit') Delete
+                                    
